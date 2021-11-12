@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>19ITR041 CALCULATORS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="shortcut icon" href="./img/favicon.jpeg" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  </head>
+  <body>
+   
+
+    <div class="container-fluid"id="calc3_bg">
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10"id="calc3_body"> 
+              <div class="row"id="calc3_head">
+                CALCULATION FORM(NUMBER SYSTEM CONVERSION)
+            </div>
+
+            
+                <div class="row">
+                  <div class="col-md-3" id="calc3_h1" >Select input type</div>
+                  <div class="form-group col-md-6">
+                      <select id="inputState" class="form-control"onchange="empty()">
+                        <option selected>Choose...</option>
+                        <option value="d">Decimal</option>
+                        <option value="b">Binary</option>
+                        <option value="h">Hexadecimal</option>
+                        <option value="o">Octal</option>
+                        
+                      </select>
+                    </div>
+                  
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3"id="calc3_h1">Enter the value:</div>
+                    <div class="col-md-6">
+                    <form action="">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="inp"value="0" /></div></form>
+                      </div>
+                  </div>
+
+            <div class="row">
+              <button9
+                id="btn1"
+                type="button"
+                class="btn btn-warning "style="margin-left:13rem;"
+                onclick="convertdec()"
+              >
+                Convert
+              </button9>
+            </div>
+            <div class="row">
+              <div class="col-md-8"id="calc3_h1">Decimal</div>
+              <div class="col-md-8">
+              <form action="">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="dec" /></div></form>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8"id="calc3_h1"> Binary</div>
+              <div class="col-md-8">
+              <form action="">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="bin" /></div></form>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8"id="calc3_h1">Hexadecimal</div>
+              <div class="col-md-8">
+              <form action="">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="hex" /></div></form>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8"id="calc3_h1"> Octal</div>
+              <div class="col-md-8">
+              <form action="">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="oct" /></div></form>
+                </div>
+            </div>
+           
+            <br><br><br><br>
+
+            </div>
+          <br> 
+        </div>
+    </div>
+
+    <script>
+      var e=function empty(){
+        document.getElementById("dec").value='';
+        document.getElementById("hex").value='';
+        document.getElementById("bin").value='';
+        document.getElementById("oct").value='';
+
+        
+
+
+      }
+      function convertdec(){
+        var t=document.getElementById("inputState").selectedIndex;
+        if(t==0){
+          alert("Choose any fields");
+        }
+        else if(t==1){
+          var x=document.getElementById("inp").value;
+          var u=[0,1,2,3,4,5,6,7,8,9];
+          var f=0;
+          for(i=0;x.length>0;i++)
+          {
+            l=x%10;
+            if(l in u){
+              x=(x/10);
+            }
+            else{
+              f=1;
+              x=(x/10);
+            }
+          }
+          if(f==0){
+            var x=parseInt(document.getElementById("inp").value);
+          document.getElementById("dec").value=x;
+          s();
+          }
+          else{
+              alert("Enter the correct format of decimal(0-9)");
+              document.getElementById("inp").value='';e();
+            }
+          }
+
+        else if(t==2){
+          var o=document.getElementById("inp").value;
+          var x=o;
+          var u=[0,1];
+          var flag=0;
+          for(var i=0;x.length>0;i++){
+            var a1=x%10;
+            if(a1 in u)
+            {
+            x=(x/10);
+            }
+            else{
+              flag=1;
+              x=(x/10);
+            }
+          }
+         
+          if(flag==0){ 
+          var a1=0;var an=0;
+          var x=parseInt(document.getElementById("inp").value);
+          
+          for(var i=0;x>0;i++){
+            var a1=parseInt(x%10);
+            x=parseInt(x/10);
+            an+=a1*(2**i);
+            
+          }
+         
+          document.getElementById("dec").value=an;
+          s();
+          }
+          else{
+            alert("Enter correct binary format(0 & 1)");
+            document.getElementById("inp").value='';
+            e();
+          }
+        }
+  
+        else if(t==3){
+          var an=0;var a1=0;var flag=0;
+          var x=(document.getElementById("inp").value);
+          var u=[0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','A','B','C','D','E','F'];
+          for(var i=0;i<x.length;i++){
+            j=x.charAt(x.length-i-1);
+            
+            if((j in u)||((j<='f'))||(j<='F'))
+            {
+              
+            }
+            else{
+              flag=1;
+            }
+           
+          }
+
+          if(flag==0){
+          for(var i=0;i<x.length;i++){
+          j=x.charAt(x.length-i-1);
+          if((j=='A')||(j=='a')){
+           an+=10*(16**i);
+          }
+          else if((j=='B')||(j=='b')){
+            an+=11*(16**i);
+          }
+          else if((j=='C')||(j=='c')){
+            an+=12*(16**i);
+          }
+          else if((j=='D')||(j=='d')){
+            an+=13*(16**i);
+          }
+          else if((j=='E')||(j=='e')){
+            an+=14*(16**i);
+          }
+          else if((j=='F')||(j=='f')){
+            an+=15*(16**i);
+          }
+          else{
+            an+=parseInt(j)*(16**i);
+          }
+          }
+          document.getElementById("dec").value=an;
+          s();
+        }
+        else{
+          alert("Enter correct hexa format(0 to 9,a-f,A-F)");
+            document.getElementById("inp").value='';
+            e();
+        }
+        }
+        
+        else if(t==4){
+          var o=document.getElementById("inp").value;
+          var x=o;
+          var u=[0,1,2,3,4,5,6,7,8,9];
+          var flag=0;
+          for(var i=0;x.length>0;i++){
+            var a1=x%10;
+            if(a1 in u)
+            {
+            x=(x/10);
+            }
+            else{
+              flag=1;
+              x=(x/10);
+            }
+          }
+         
+          if(flag==0){ 
+          var a1=0;var an=0;
+          var x=parseInt(document.getElementById("inp").value);
+          
+          for(var i=0;x>0;i++){
+            var a1=parseInt(x%10);
+            x=parseInt(x/10);
+            an+=a1*(8**i);
+            
+          }
+         
+          document.getElementById("dec").value=an;
+          s();
+          }
+          else{
+            alert("Enter correct octal format(0-9)");
+            document.getElementById("inp").value='';
+            e();
+          }
+        }
+  
+      
+        
+      
+        }
+      
+      var s=function(){
+        var x=parseInt(document.getElementById("dec").value);
+        document.getElementById("dec").value=x;
+
+
+        var j=0;var k='';var c=0;var l=0;
+        var x=parseInt(document.getElementById("dec").value);
+        for (let i=0;x>0;i++){
+          j=x%2;
+          x=parseInt(x/2);
+          k=parseInt(j)+k;
+        }
+        document.getElementById("bin").value=k;
+
+        k='';
+        var x=parseInt(document.getElementById("dec").value);
+        for (let i=0;x>0;i++){
+          j=x%16;
+          x=parseInt(x/16);
+          if(j==10){
+            k='A'+k;
+          }
+          else if(j==11){
+            k='B'+k;
+          }
+          else if(j==12){
+            k='C'+k;
+          }
+          else if(j==13){
+            k='D'+k;
+          }
+          else if(j==14){
+            k='E'+k;
+          }
+          else if(j==15){
+            k='F'+k;
+          }
+          else{
+             k=(j)+k;
+          }
+          
+        }
+        document.getElementById("hex").value=k;
+
+
+
+       
+
+        k='';
+        var x=parseInt(document.getElementById("dec").value);
+        for (let i=0;x>0;i++){
+          j=x%8;
+          x=parseInt(x/8);
+          k=(j)+k;
+        }
+        document.getElementById("oct").value=k;
+      }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+
